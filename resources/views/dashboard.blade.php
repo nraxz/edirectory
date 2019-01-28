@@ -1,0 +1,40 @@
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                   <h3> Your Listings</h3>
+                    @if(count($listings))
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>category</th>
+                            </tr>
+                            @foreach($listings as $listing)
+                            <tr>
+                                <td>{{$listing->name}}</td>
+                                <td>{{$listing->category}}</td>
+                                <td><a class="pull-right btn btn-primary" href="/listings/{{$listing->id}}/edit">Edit</a> </td>
+                            </tr>
+                            @endforeach
+
+                        </table>
+                    @endif
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
